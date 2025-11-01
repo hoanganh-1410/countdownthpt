@@ -918,6 +918,310 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Admin Panel Styles */
+    .admin-btn {
+      padding: 0.6rem 1.2rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .admin-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px var(--glow);
+    }
+
+    .admin-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .export-btn {
+      background: linear-gradient(135deg, #10B981, #059669);
+      border-color: #10B981;
+      color: white;
+    }
+
+    .export-btn:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+
+    .admin-panel {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .admin-action-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .admin-action-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .admin-action-btn.delete-btn {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #FCA5A5;
+    }
+
+    .admin-action-btn.delete-btn:hover {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #EF4444;
+      color: #FEE2E2;
+    }
+
+    .admin-action-btn.export-btn {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #6EE7B7;
+    }
+
+    .admin-action-btn.export-btn:hover {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10B981;
+      color: #D1FAE5;
+    }
+
+    /* Message Card Admin Mode */
+    .message-card.admin-mode {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .message-card.admin-mode::before {
+      content: '';
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .message-card.admin-mode.selected::before {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .message-card.admin-mode.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 0.7rem;
+      left: 0.7rem;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 11;
+    }
+
+    .message-card.admin-mode.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--glow);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .message-card.admin-mode:hover::before {
+      border-color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .message-card.admin-mode .message-text,
+    .message-card.admin-mode .message-author,
+    .message-card.admin-mode .message-time {
+      margin-left: 2rem;
+    }
+
+    /* Delete confirmation */
+    .delete-confirmation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      backdrop-filter: blur(10px);
+    }
+
+    .delete-modal {
+      background: var(--bg-end);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .delete-modal h3 {
+      color: #EF4444;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .delete-modal p {
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .password-input-group {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .password-input-group label {
+      display: block;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-sizing: border-box;
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--glow);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .password-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .password-error {
+      color: #EF4444;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .password-hint {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .delete-modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .delete-modal-btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .delete-modal-btn.confirm {
+      background: #EF4444;
+      color: white;
+    }
+
+    .delete-modal-btn.confirm:hover:not(:disabled) {
+      background: #DC2626;
+      transform: translateY(-2px);
+    }
+
+    .delete-modal-btn.confirm:disabled {
+      background: #6B7280;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .delete-modal-btn.cancel {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .delete-modal-btn.cancel:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Password shake animation */
+    @keyframes passwordShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .password-shake {
+      animation: passwordShake 0.5s ease-in-out;
+    }
+
+    /* Search highlight */
+    .highlight {
+      background: rgba(255, 255, 0, 0.3);
+      padding: 0.1rem 0.2rem;
+      border-radius: 3px;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .countdown-container {
@@ -971,6 +1275,41 @@
 
       .section {
         padding: 3rem 1rem;
+      }
+
+      .admin-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+      }
+
+      .admin-btn {
+        justify-content: center;
+        padding: 0.8rem;
+      }
+
+      .admin-panel {
+        padding: 1rem;
+      }
+
+      .admin-panel > div:first-child {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+      }
+
+      .admin-panel > div:nth-child(2) {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .admin-panel > div:last-child {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      #searchInput {
+        min-width: auto;
       }
     }
 
@@ -1108,7 +1447,22 @@
     </div>
    </section><!-- Messages Display Section -->
    <section class="section">
-    <h2 class="section-title scroll-reveal">LỜI CHÚC TỪ CỘNG ĐỒNG</h2>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+     <h2 class="section-title scroll-reveal" style="margin-bottom: 0;">LỜI CHÚC TỪ CỘNG ĐỒNG</h2><!-- Admin Controls -->
+     <div class="admin-controls scroll-reveal" style="display: flex; gap: 1rem; align-items: center;"><button id="toggleAdminBtn" class="admin-btn"> 🔧 Quản lý </button> <button id="exportBtn" class="admin-btn export-btn"> 📊 Xuất Excel </button>
+     </div>
+    </div><!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel glass" style="display: none; margin-bottom: 2rem; padding: 1.5rem;">
+     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <h3 style="color: var(--accent); margin: 0; font-size: 1.2rem;">🛠️ Bảng điều khiển quản lý</h3>
+      <div style="display: flex; gap: 0.5rem;"><span id="totalMessages" style="color: var(--text-dim); font-size: 0.9rem;">Tổng: 0 lời chúc</span>
+      </div>
+     </div>
+     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;"><button id="selectAllBtn" class="admin-action-btn">✅ Chọn tất cả</button> <button id="deselectAllBtn" class="admin-action-btn">❌ Bỏ chọn tất cả</button> <button id="deleteSelectedBtn" class="admin-action-btn delete-btn">🗑️ Xóa đã chọn</button> <button id="exportSelectedBtn" class="admin-action-btn export-btn">📋 Xuất đã chọn</button>
+     </div>
+     <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;"><input type="text" id="searchInput" placeholder="🔍 Tìm kiếm lời chúc..." style="flex: 1; min-width: 200px; padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: var(--text);"> <select id="sortSelect" style="padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: var(--text);"> <option value="newest">📅 Mới nhất</option> <option value="oldest">📅 Cũ nhất</option> <option value="author">👤 Theo tên</option> </select>
+     </div>
+    </div>
     <div class="messages-container scroll-reveal-fade" id="messagesContainer"><!-- Messages will be displayed here -->
     </div>
    </section><!-- Footer -->
@@ -1144,6 +1498,9 @@
     let isFirebaseConnected = false;
     let connectionStatus = 'checking'; // 'checking', 'connected', 'offline', 'error'
     let pendingMessages = []; // Lời chúc chờ sync khi có mạng
+    let isAdminMode = false;
+    let selectedMessages = new Set();
+    let filteredMessages = [];
     
     // Danh sách các theme sẽ tự động chuyển đổi
     const autoThemes = ['rose', 'brown', 'emerald', 'deep'];
@@ -1549,20 +1906,29 @@
       
       if (messages.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: var(--text-dim); font-style: italic;">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời động viên!</p>';
+        updateMessageCount(0);
         return;
       }
 
-      const sortedMessages = [...messages].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      // Áp dụng filter và sort
+      filteredMessages = applyFiltersAndSort([...messages]);
+      updateMessageCount(filteredMessages.length);
       
-      container.innerHTML = sortedMessages.map((msg, index) => {
+      container.innerHTML = filteredMessages.map((msg, index) => {
         const animationClass = index % 3 === 0 ? 'scroll-reveal' : 
                              index % 3 === 1 ? 'scroll-reveal-left' : 'scroll-reveal-right';
         
+        const isSelected = selectedMessages.has(msg.id || msg.timestamp);
+        const adminModeClass = isAdminMode ? 'admin-mode' : '';
+        const selectedClass = isSelected ? 'selected' : '';
+        
         return `
-          <div class="message-card ${animationClass}">
-            <div class="message-text">${msg.message}</div>
+          <div class="message-card ${animationClass} ${adminModeClass} ${selectedClass}" 
+               data-message-id="${msg.id || msg.timestamp}"
+               onclick="${isAdminMode ? 'toggleMessageSelection(this)' : ''}">
+            <div class="message-text">${highlightSearchTerm(msg.message)}</div>
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span class="message-author">— ${msg.author}</span>
+              <span class="message-author">— ${highlightSearchTerm(msg.author)}</span>
               <span class="message-time">${formatTime(msg.timestamp)}</span>
             </div>
           </div>
@@ -1753,6 +2119,322 @@
       });
     }
 
+    // ===== HỆ THỐNG QUẢN LÝ ADMIN =====
+    
+    function toggleAdminMode() {
+      isAdminMode = !isAdminMode;
+      const toggleBtn = document.getElementById('toggleAdminBtn');
+      const adminPanel = document.getElementById('adminPanel');
+      
+      if (isAdminMode) {
+        toggleBtn.classList.add('active');
+        toggleBtn.innerHTML = '🔧 Thoát quản lý';
+        adminPanel.style.display = 'block';
+        selectedMessages.clear();
+      } else {
+        toggleBtn.classList.remove('active');
+        toggleBtn.innerHTML = '🔧 Quản lý';
+        adminPanel.style.display = 'none';
+        selectedMessages.clear();
+      }
+      
+      renderMessages(allMessages);
+    }
+
+    function toggleMessageSelection(cardElement) {
+      if (!isAdminMode) return;
+      
+      const messageId = cardElement.dataset.messageId;
+      
+      if (selectedMessages.has(messageId)) {
+        selectedMessages.delete(messageId);
+        cardElement.classList.remove('selected');
+      } else {
+        selectedMessages.add(messageId);
+        cardElement.classList.add('selected');
+      }
+      
+      updateSelectionButtons();
+    }
+
+    function selectAllMessages() {
+      selectedMessages.clear();
+      filteredMessages.forEach(msg => {
+        selectedMessages.add(msg.id || msg.timestamp);
+      });
+      renderMessages(allMessages);
+      updateSelectionButtons();
+    }
+
+    function deselectAllMessages() {
+      selectedMessages.clear();
+      renderMessages(allMessages);
+      updateSelectionButtons();
+    }
+
+    function updateSelectionButtons() {
+      const deleteBtn = document.getElementById('deleteSelectedBtn');
+      const exportBtn = document.getElementById('exportSelectedBtn');
+      const selectedCount = selectedMessages.size;
+      
+      deleteBtn.textContent = `🗑️ Xóa đã chọn (${selectedCount})`;
+      exportBtn.textContent = `📋 Xuất đã chọn (${selectedCount})`;
+      
+      deleteBtn.disabled = selectedCount === 0;
+      exportBtn.disabled = selectedCount === 0;
+    }
+
+    function updateMessageCount(count) {
+      const totalElement = document.getElementById('totalMessages');
+      if (totalElement) {
+        totalElement.textContent = `Tổng: ${count} lời chúc`;
+      }
+    }
+
+    function applyFiltersAndSort(messages) {
+      const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+      const sortBy = document.getElementById('sortSelect')?.value || 'newest';
+      
+      // Filter by search term
+      let filtered = messages;
+      if (searchTerm) {
+        filtered = messages.filter(msg => 
+          msg.message.toLowerCase().includes(searchTerm) ||
+          msg.author.toLowerCase().includes(searchTerm)
+        );
+      }
+      
+      // Sort messages
+      switch (sortBy) {
+        case 'oldest':
+          filtered.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+          break;
+        case 'author':
+          filtered.sort((a, b) => a.author.localeCompare(b.author));
+          break;
+        case 'newest':
+        default:
+          filtered.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+          break;
+      }
+      
+      return filtered;
+    }
+
+    function highlightSearchTerm(text) {
+      const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+      if (!searchTerm) return text;
+      
+      const regex = new RegExp(`(${searchTerm})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+
+    async function deleteSelectedMessages() {
+      if (selectedMessages.size === 0) {
+        showNotification('Vui lòng chọn ít nhất một lời chúc để xóa!', 'warning');
+        return;
+      }
+
+      const selectedCount = selectedMessages.size;
+      
+      // Hiển thị modal xác nhận với mật khẩu
+      const confirmModal = document.createElement('div');
+      confirmModal.className = 'delete-confirmation';
+      confirmModal.innerHTML = `
+        <div class="delete-modal">
+          <h3>🔐 Xác nhận xóa với mật khẩu</h3>
+          <p>Bạn có chắc chắn muốn xóa <strong>${selectedCount}</strong> lời chúc đã chọn?<br>
+          <em>Hành động này không thể hoàn tác!</em></p>
+          
+          <div class="password-input-group">
+            <label for="deletePassword">Nhập mật khẩu để xác nhận:</label>
+            <input type="password" id="deletePassword" class="password-input" 
+                   placeholder="Nhập mật khẩu admin..." autocomplete="off">
+            <div class="password-error" id="passwordError">❌ Mật khẩu không chính xác!</div>
+            <div class="password-hint">💡 Liên hệ admin nếu bạn quên mật khẩu</div>
+          </div>
+          
+          <div class="delete-modal-buttons">
+            <button class="delete-modal-btn cancel" onclick="closeDeleteModal()">
+              ❌ Hủy bỏ
+            </button>
+            <button class="delete-modal-btn confirm" id="confirmDeleteBtn" onclick="verifyPasswordAndDelete()" disabled>
+              🗑️ Xóa ngay
+            </button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(confirmModal);
+      
+      // Focus vào input mật khẩu
+      const passwordInput = document.getElementById('deletePassword');
+      setTimeout(() => passwordInput.focus(), 100);
+      
+      // Xử lý sự kiện input
+      passwordInput.addEventListener('input', function() {
+        const confirmBtn = document.getElementById('confirmDeleteBtn');
+        const errorDiv = document.getElementById('passwordError');
+        
+        // Enable/disable nút xác nhận
+        confirmBtn.disabled = this.value.trim().length === 0;
+        
+        // Ẩn lỗi khi người dùng gõ
+        errorDiv.style.display = 'none';
+        this.classList.remove('password-shake');
+      });
+      
+      // Xử lý Enter key
+      passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !document.getElementById('confirmDeleteBtn').disabled) {
+          verifyPasswordAndDelete();
+        }
+      });
+    }
+
+    // ===== HỆ THỐNG MẬT KHẨU BẢO MẬT =====
+    
+    // 🔐 THAY ĐỔI MẬT KHẨU TẠI ĐÂY
+    const ADMIN_PASSWORD = "admin123"; // Đổi mật khẩu này thành mật khẩu bạn muốn
+    
+    function closeDeleteModal() {
+      const confirmModal = document.querySelector('.delete-confirmation');
+      if (confirmModal) confirmModal.remove();
+    }
+    
+    function verifyPasswordAndDelete() {
+      const passwordInput = document.getElementById('deletePassword');
+      const errorDiv = document.getElementById('passwordError');
+      const enteredPassword = passwordInput.value.trim();
+      
+      if (enteredPassword === ADMIN_PASSWORD) {
+        // Mật khẩu đúng - thực hiện xóa
+        confirmDeleteMessages();
+      } else {
+        // Mật khẩu sai - hiển thị lỗi
+        errorDiv.style.display = 'block';
+        passwordInput.classList.add('password-shake');
+        passwordInput.value = '';
+        passwordInput.focus();
+        
+        // Tự động ẩn lỗi sau 3 giây
+        setTimeout(() => {
+          errorDiv.style.display = 'none';
+          passwordInput.classList.remove('password-shake');
+        }, 3000);
+      }
+    }
+
+    async function confirmDeleteMessages() {
+      const confirmModal = document.querySelector('.delete-confirmation');
+      if (confirmModal) confirmModal.remove();
+      
+      const selectedIds = Array.from(selectedMessages);
+      let deletedCount = 0;
+      
+      try {
+        // Xóa từ Firebase nếu có kết nối
+        if (isFirebaseConnected && database) {
+          for (const messageId of selectedIds) {
+            const message = allMessages.find(msg => (msg.id || msg.timestamp) === messageId);
+            if (message && message.id) {
+              try {
+                await database.ref(`messages/${message.id}`).remove();
+                deletedCount++;
+              } catch (error) {
+                console.error('Lỗi xóa từ Firebase:', error);
+              }
+            }
+          }
+        }
+        
+        // Xóa từ localStorage
+        allMessages = allMessages.filter(msg => !selectedMessages.has(msg.id || msg.timestamp));
+        saveMessagesToLocalStorage(allMessages);
+        
+        // Cập nhật giao diện
+        selectedMessages.clear();
+        renderMessages(allMessages);
+        updateSelectionButtons();
+        
+        showNotification(`✅ Đã xóa ${selectedIds.length} lời chúc thành công!`, 'success');
+        
+      } catch (error) {
+        console.error('Lỗi xóa lời chúc:', error);
+        showNotification('❌ Có lỗi xảy ra khi xóa lời chúc!', 'error');
+      }
+    }
+
+    // ===== HỆ THỐNG XUẤT DỮ LIỆU =====
+    
+    function exportToExcel(messages = null, filename = 'loi-chuc-thpt-2025') {
+      const dataToExport = messages || allMessages;
+      
+      if (dataToExport.length === 0) {
+        showNotification('Không có dữ liệu để xuất!', 'warning');
+        return;
+      }
+
+      // Tạo dữ liệu CSV
+      const csvData = [
+        ['STT', 'Tên người gửi', 'Lời chúc', 'Thời gian gửi', 'Ngày gửi'],
+        ...dataToExport.map((msg, index) => {
+          const date = new Date(msg.timestamp);
+          return [
+            index + 1,
+            msg.author,
+            `"${msg.message.replace(/"/g, '""')}"`, // Escape quotes
+            date.toLocaleTimeString('vi-VN'),
+            date.toLocaleDateString('vi-VN')
+          ];
+        })
+      ];
+
+      // Chuyển đổi thành CSV string
+      const csvString = csvData.map(row => row.join(',')).join('\n');
+      
+      // Thêm BOM để hỗ trợ tiếng Việt
+      const BOM = '\uFEFF';
+      const csvWithBOM = BOM + csvString;
+      
+      // Tạo và download file
+      const blob = new Blob([csvWithBOM], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      
+      if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `${filename}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showNotification(`📊 Đã xuất ${dataToExport.length} lời chúc thành công!`, 'success');
+      } else {
+        showNotification('❌ Trình duyệt không hỗ trợ tải file!', 'error');
+      }
+    }
+
+    function exportSelectedMessages() {
+      if (selectedMessages.size === 0) {
+        showNotification('Vui lòng chọn ít nhất một lời chúc để xuất!', 'warning');
+        return;
+      }
+      
+      const selectedData = allMessages.filter(msg => 
+        selectedMessages.has(msg.id || msg.timestamp)
+      );
+      
+      const timestamp = new Date().toISOString().slice(0, 10);
+      exportToExcel(selectedData, `loi-chuc-da-chon-${timestamp}`);
+    }
+
+    function exportAllMessages() {
+      const timestamp = new Date().toISOString().slice(0, 10);
+      exportToExcel(allMessages, `tat-ca-loi-chuc-${timestamp}`);
+    }
+
     // ===== KHỞI TẠO ỨNG DỤNG =====
     async function init() {
       // Tải dữ liệu từ localStorage trước
@@ -1787,6 +2469,22 @@
       document.getElementById('messageForm').addEventListener('submit', handleFormSubmit);
       document.getElementById('anonymousCheck').addEventListener('change', handleAnonymousToggle);
       
+      // Thiết lập admin controls
+      document.getElementById('toggleAdminBtn').addEventListener('click', toggleAdminMode);
+      document.getElementById('exportBtn').addEventListener('click', exportAllMessages);
+      document.getElementById('selectAllBtn').addEventListener('click', selectAllMessages);
+      document.getElementById('deselectAllBtn').addEventListener('click', deselectAllMessages);
+      document.getElementById('deleteSelectedBtn').addEventListener('click', deleteSelectedMessages);
+      document.getElementById('exportSelectedBtn').addEventListener('click', exportSelectedMessages);
+      
+      // Thiết lập search và sort
+      document.getElementById('searchInput').addEventListener('input', () => {
+        renderMessages(allMessages);
+      });
+      document.getElementById('sortSelect').addEventListener('change', () => {
+        renderMessages(allMessages);
+      });
+      
       // Thiết lập scroll reveal
       initScrollReveal();
       
@@ -1796,5 +2494,5 @@
 
     document.addEventListener('DOMContentLoaded', init);
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'997954c172315df8',t:'MTc2MTk3ODQ5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99796a4de7bfe2ff',t:'MTc2MTk3OTM3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

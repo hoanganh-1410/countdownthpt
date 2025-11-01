@@ -1012,6 +1012,81 @@
       border-color: rgba(16, 185, 129, 0.3);
       color: #6EE7B7;
     }
+    /* Message Particles */
+    .message-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .message-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: messageFloat 15s linear infinite;
+    }
+
+    .message-particle.circle::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .message-particle.square::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 6px;
+      height: 6px;
+      background: var(--secondary);
+      border-radius: 2px;
+      opacity: 0.6;
+      transform: rotate(45deg);
+    }
+
+    .message-particle.diamond::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(45deg, var(--accent), var(--secondary));
+      border-radius: 2px;
+      opacity: 0.7;
+      transform: rotate(45deg);
+    }
+
+    @keyframes messageFloat {
+      0% {
+        transform: translateY(100%) translateX(0px) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.8;
+      }
+      85% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-300px) translateX(80px) rotate(720deg);
+        opacity: 0;
+      }
+    }
 
     .admin-action-btn.export-btn:hover {
       background: rgba(16, 185, 129, 0.2);
@@ -1678,7 +1753,8 @@
      </div>
     </div>
     <div class="messages-container scroll-reveal-fade" id="messagesContainer"><!-- Messages will be displayed here -->
-    </div>
+    </div><!-- Floating elements around messages -->
+    <div class="message-particles" id="messageParticles"></div>
    </section><!-- Footer -->
    <section class="section scroll-reveal-scale" style="text-align: center; padding-bottom: 3rem;">
     <p style="color: var(--text-dim); font-size: 1.1rem; font-weight: 300;">Hãy chia sẻ trang web này đến với mọi người nhé.</p>
@@ -1730,7 +1806,7 @@
     function createParticles() {
       const particles = document.getElementById('particles');
       
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 70; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -1739,6 +1815,35 @@
         particles.appendChild(particle);
       }
     }
+    
+    function createMessageParticles() {
+      const messageParticles = document.getElementById('messageParticles');
+      if (!messageParticles) return;  // Thoát nếu không tìm thấy container
+      
+      // 3 loại hình dạng hạt bay
+      const particleTypes = ['circle', 'square', 'diamond'];
+      
+      // Tạo 40 hạt bay cho phần lời chúc (có thể thay đổi số này)
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        
+        // Chọn ngẫu nhiên 1 trong 3 loại hình dạng
+        const type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+        particle.className = `message-particle ${type}`;
+        
+        // Vị trí ngang ngẫu nhiên
+        particle.style.left = Math.random() * 100 + '%';
+        
+        // Thời gian bắt đầu ngẫu nhiên (0-8 giây)
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        
+        // Thời gian bay ngẫu nhiên (6-10 giây)
+        particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+        
+        messageParticles.appendChild(particle);
+      }
+    }
+
 
     // ===== HỆ THỐNG ĐỔI THEME =====
     function switchTheme(theme, isAutomatic = false) {
@@ -1919,7 +2024,17 @@
         setTimeout(() => {
           element.classList.remove('number-flip', 'number-glow', 'number-pulse');
         }, 800);
-      }
+        // Thêm hiệu ứng rung nhẹ cho các mốc quan trọng
+        if ((id === 'days' && newValue % 10 === 0) ||     // Mỗi 10 ngày
+            (id === 'hours' && newValue === 0) ||         // Khi giờ về 0
+            (id === 'minutes' && newValue === 0) || // Khi phút về 0
+            (id === 'seconds' && newValue === 0)) { 
+          
+          element.parentElement.style.animation = 'gentleShake 0.5s ease-in-out';
+          setTimeout(() => {
+            element.parentElement.style.animation = '';
+          }, 500);
+      }}
     }
 
     // ===== HỆ THỐNG FIREBASE =====
@@ -3461,8 +3576,11 @@
       // Hiển thị trạng thái kết nối ban đầu
       updateConnectionStatus();
     }
+    createParticles();
+    createMessageParticles();
+
+
 
     document.addEventListener('DOMContentLoaded', init);
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'997ae090e7dcd007',t:'MTc2MTk5NDcwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+  </html>
